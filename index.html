@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アザラシキッド - 究極の上級アザラシ会員体験</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8860B;
+            --black: #000;
+            --dark-gray: #222;
+            --light-gray: #444;
+        }
+        
+        body {
+            font-family: 'Noto Serif JP', serif;
+            line-height: 1.6;
+            color: var(--gold);
+            background-color: var(--black);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(45deg, var(--black), var(--dark-gray));
+            color: var(--gold);
+            text-align: center;
+            padding: 2em 0;
+            border-bottom: 2px solid var(--gold);
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', 'Noto Serif JP', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .content {
+            background-color: var(--dark-gray);
+            padding: 40px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(212,175,55,0.3);
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212,175,55,0.6);
+        }
+        .benefits {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .benefit-item {
+            flex-basis: calc(33% - 20px);
+            margin-bottom: 20px;
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(212,175,55,0.1);
+            transition: transform 0.3s ease;
+        }
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--black);
+            color: var(--gold);
+            margin-top: 40px;
+            border-top: 1px solid var(--gold);
+        }
+        .price {
+            font-size: 2em;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .discount-price {
+            color: var(--gold);
+            font-weight: bold;
+        }
+        #countdown {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 20px 0;
+            color: #FF4500;
+        }
+        .social-proof {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .testimonial {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .security-badges img {
+            margin: 0 10px;
+            height: 40px;
+        }
+        .faq {
+            margin-top: 40px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .stat-item {
+            font-size: 1.2em;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--gold);
+        }
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .payment-methods i {
+            font-size: 2em;
+            margin: 0 10px;
+            color: var(--gold);
+        }
+        .newsletter {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .newsletter input {
+            padding: 10px;
+            width: 60%;
+            margin-right: 10px;
+        }
+        .social-share {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .social-share a {
+            color: var(--gold);
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+        .guarantee {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .support-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .star-rating {
+            color: var(--gold);
+            font-size: 1.2em;
+        }
+        @media (max-width: 768px) {
+            .benefit-item {
+                flex-basis: 100%;
+            }
+            .newsletter input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>アザラシキッド</h1>
+        <p>究極の上級アザラシ会員体験</p>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <h2 data-aos="fade-up">24時間限定特別オファー</h2>
+            <p data-aos="fade-up" data-aos-delay="200">アザラシキッドの上級会員になると、比類なきアザラシの世界が開かれます。限定的で贅沢な体験を通じて、アザラシとの絆を深めていただけます。</p>
+            
+            <div class="price" data-aos="zoom-in">
+                <span class="original-price">￥298,000</span><br>
+                <span class="discount-price">特別価格: ￥198,000</span>
+            </div>
+            
+            <div id="countdown" data-aos="flip-up"></div>
+            
+            <h3 data-aos="fade-right">上級会員特典</h3>
+            <div class="benefits">
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="100">
+                    <h4><i class="fas fa-plane"></i> VIPアザラシツアー</h4>
+                    <p>世界中の希少なアザラシの生息地を訪れる、完全プライベートツアーにご招待。専門ガイドが同行し、アザラシの生態を間近で観察できます。</p>
+                    <a href="#" class="cta-button">詳細を見る</a>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="200">
+                    <h4><i class="fas fa-user-tie"></i> 専属アザラシカウンセラー</h4>
+                    <p>アザラシに関するあらゆる質問や相談に、24時間体制でお答えする専属カウンセラーを配置。アザラシの健康管理から行動学まで、幅広くサポートします。</p>
+                    <a href="#" class="cta-button">詳細を見る</a>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="300">
+                    <h4><i class="fas fa-gift"></i> 限定アザラシグッズ</h4>
+                    <p>高級素材を使用した、上級会員だけのための特別なアザラシグッズを毎月お届け。オーダーメイドのアザラシぬいぐるみや、希少なアザラシの写真集など、豪華アイテムをお楽しみいただけます。</p>
+                    <a href="#" class="cta-button">詳細を見る</a>
+                </div>
+            </div>
+            
+            <div class="stats" data-aos="fade-up">
+                <div class="stat-item">
+                    <div class="stat-number">5,000+</div>
+                    <div>会員数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div>会員満足度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div>保護アザラシ数</div>
+                </div>
+            </div>
+            
+            <a href="checkout.html" class="cta-button" data-aos="zoom-in">今すぐ上級会員に申し込む</a>
+            
+            <div class="social-proof" data-aos="fade-up">
+                <h3>会員の声</h3>
+                <div class="testimonial">
+                    <div class="star-rating">★★★★★</div>
+                    "アザラシキッドの上級会員になって、人生が変わりました。アザラシとの絆が深まり、毎日が感動の連続です。" - 田中さん
+                </div>
+                <div class="testimonial">
+                    <div class="star-rating">★★★★★</div>
+                    "VIPツアーは忘れられない経験でした。専門家の解説付きで、アザラシの生態を間近で観察できて感動しました。" - 佐藤さん
+                </div>
+            </div>
+            
+            <div class="payment-methods" data-aos="fade-up">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            
+            <div class="guarantee" data-aos="fade-up">
+                30日間の全額返金保証付き！安心してお申し込みいただけます。
+            </div>
+            
+            <div class="newsletter" data-aos="fade-up">
+                <h3>ニュースレター登録</h3>
+                <form>
+                    <input type="email" placeholder="メールアドレスを入力">
+                    <button type="submit" class="cta-button">登録</button>
+                </form>
+            </div>
+            
+            <div class="social-share" data-aos="fade-up">
+                <h3>シェアする</h3>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="support-info" data-aos="fade-up">
+                <h3>カスタマーサポート</h3>
+                <p>お問い合わせ: support@azarashikid.com</p>
+                <p>電話: 0120-XXX-XXX (24時間対応)</p>
+            </div>
+            <div class="faq" data-aos="fade-up">
+                <h3>よくある質問</h3>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 上級会員の特典はいつから利用できますか？</div>
+                    <div class="faq-answer">A: ご入会手続き完了後、即日から全ての特典をお楽しみいただけます。VIPツアーについては、ご希望の日程を調整させていただきます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 会員資格の有効期限はありますか？</div>
+                    <div class="faq-answer">A: 上級会員資格に有効期限はございません。一度ご入会いただくと、永続的に特典をお楽しみいただけます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 支払いは一括のみですか？</div>
+                    <div class="faq-answer">A: はい、現在は一括支払いのみとなっております。ただし、高額のため、お支払いにつきましてはご相談を承ります。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 アザラシキッド. All rights reserved.</p>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    
+        // カウントダウン終了時刻を設定（24時間後）
+        const endTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+    
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = endTime - now;
+    
+            if (timeLeft > 0) {
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                const milliseconds = timeLeft % 1000;
+    
+                document.getElementById('countdown').innerText = 
+                    `残り時間: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+    
+                requestAnimationFrame(updateCountdown);
+            } else {
+                document.getElementById('countdown').innerText = "オファー終了";
+            }
+        }
+    
+        // ページ読み込み時にカウントダウンを開始
+        updateCountdown();
+    
+        // FAQのトグル機能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    
+        // 画像の遅延読み込み
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+    
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.remove("lazy");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+    
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+    </script>
+    </body>
+    </html>
