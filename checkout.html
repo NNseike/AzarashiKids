@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アザラシキッド - 決済画面</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8860B;
+            --black: #000;
+            --dark-gray: #222;
+            --light-gray: #444;
+            --white: #fff;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--light-gray);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: var(--gold);
+            text-align: center;
+        }
+        form {
+            display: grid;
+            gap: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+        }
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .payment-method {
+            text-align: center;
+            cursor: pointer;
+        }
+        .payment-method i {
+            font-size: 2em;
+            color: var(--gold);
+        }
+        .submit-btn {
+            background-color: var(--gold);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: var(--dark-gold);
+        }
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+        .warning-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning-content {
+            background-color: #FF4500;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .close-warning {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            color: #FF4500;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>アザラシキッド</h1>
+        <h2>決済画面</h2>
+        <form id="checkout-form">
+            <div>
+                <label for="name">お名前</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="address">住所</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div>
+                <label for="payment-method">支払い方法</label>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fab fa-cc-visa"></i>
+                        <p>Visa</p>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fab fa-cc-mastercard"></i>
+                        <p>Mastercard</p>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fab fa-cc-amex"></i>
+                        <p>American Express</p>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fab fa-cc-paypal"></i>
+                        <p>PayPal</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="card-number">カード番号</label>
+                <input type="text" id="card-number" name="card-number" required>
+            </div>
+            <div>
+                <label for="expiry-date">有効期限</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+            </div>
+            <div>
+                <label for="cvv">セキュリティコード</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+            <div class="total">
+                合計金額: ￥198,000
+            </div>
+            <button type="submit" class="submit-btn">決済を完了する</button>
+        </form>
+    </div>
+
+    <div id="warningPopup" class="warning-popup">
+        <div class="warning-content">
+            <p>ちゃんと入力しろやコラ！！</p>
+            <button class="close-warning" onclick="closeWarning()">わかったよ...</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkoutForm = document.getElementById('checkout-form');
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // フォームの各入力フィールドをチェック
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const address = document.getElementById('address').value;
+                    const cardNumber = document.getElementById('card-number').value;
+                    const expiryDate = document.getElementById('expiry-date').value;
+                    const cvv = document.getElementById('cvv').value;
+
+                    if (!name || !email || !address || !cardNumber || !expiryDate || !cvv) {
+                        // 入力が不完全な場合、警告ポップアップを表示
+                        document.getElementById('warningPopup').style.display = 'flex';
+                    } else {
+                        // すべての入力が完了している場合、決済処理へ進む
+                        alert('決済が完了しました。ありがとうございます！');
+                        // 決済完了後、確認ページにリダイレクトするなどの処理を行います。
+                    }
+                });
+            }
+
+            // 支払い方法の選択
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.style.opacity = '0.5');
+                    this.style.opacity = '1';
+                });
+            });
+        });
+
+        function closeWarning() {
+            document.getElementById('warningPopup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
